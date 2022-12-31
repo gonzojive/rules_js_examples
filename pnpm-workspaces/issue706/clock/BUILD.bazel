@@ -3,7 +3,10 @@ load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 
 npm_package(
     name = "pkg",
-    srcs = [":proj"],
+    srcs = [
+        "package.json",
+        ":proj",
+    ],
     package = "@myapp/clock",
     visibility = ["//visibility:public"],
 )
