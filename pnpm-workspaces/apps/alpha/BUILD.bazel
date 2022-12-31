@@ -2,6 +2,11 @@ load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_js//js:defs.bzl", "js_binary")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 
+# 1. Why npm_link_all_packages needed here but not in //packages/one? What is
+#    this doing?
+#
+# 2. Why does package.json make no reference to @bazel-poc/one,
+#    @bazel-poc/shared, etc?
 npm_link_all_packages(name = "node_modules")
 
 ts_project(
@@ -14,6 +19,7 @@ ts_project(
         "//:node_modules/@bazel-poc/shared",
         "//:node_modules/@types/node",
         "//:node_modules/star-wars-quotes",
+        "//issue706/clock:node_modules/@myapp/clock",
     ],
 )
 

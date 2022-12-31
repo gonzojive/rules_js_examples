@@ -1,7 +1,12 @@
 {
   "extends": "@tsconfig/node16-strictest/tsconfig.json",
   "compilerOptions": {
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "paths": {
+      "*": [
+        "./bazel-out/k8-fastbuild/bin/node_modules/*",
+      ]
+    }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
