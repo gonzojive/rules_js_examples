@@ -1,7 +1,15 @@
 {
-  "extends": "@tsconfig/node16-strictest/tsconfig.json",
   "compilerOptions": {
-    "noImplicitAny": false
+    "traceResolution": true,
+    "noImplicitAny": false,
+    "paths": {
+      // Purely for VS Code autocomplete.
+      // "*": [
+      //   "./bazel-out/k8-fastbuild/bin/node_modules/*",
+      // ],
+    },
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  // This extends is too clever for VS Code:
+  "extends": "@tsconfig/node16-strictest/tsconfig.json",
 }

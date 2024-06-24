@@ -47,3 +47,36 @@ npm_translate_lock(
 load("@npm//:repositories.bzl", "npm_repositories")
 
 npm_repositories()
+
+http_archive(
+    name = "aspect_rules_esbuild",
+    sha256 = "f9b5bf16251e3e4e127337ef968e6a398c9a4f353f1730e6c7ff6c9a8981e858",
+    strip_prefix = "rules_esbuild-0.13.4",
+    url = "https://github.com/aspect-build/rules_esbuild/archive/refs/tags/v0.13.4.tar.gz",
+)
+
+######################
+# rules_esbuild setup #
+######################
+
+# Fetches the rules_esbuild dependencies.
+# If you want to have a different version of some dependency,
+# you should fetch it *before* calling this.
+# Alternatively, you can skip calling this function, so long as you've
+# already fetched all the dependencies.
+load("@aspect_rules_esbuild//esbuild:dependencies.bzl", "rules_esbuild_dependencies")
+
+rules_esbuild_dependencies()
+
+nodejs_register_toolchains(
+    name = "node",
+    node_version = DEFAULT_NODE_VERSION,
+)
+
+# Register a toolchain containing esbuild npm package and native bindings
+load("@aspect_rules_esbuild//esbuild:repositories.bzl", "LATEST_VERSION", "esbuild_register_toolchains")
+
+esbuild_register_toolchains(
+    name = "esbuild",
+    esbuild_version = LATEST_VERSION,
+)

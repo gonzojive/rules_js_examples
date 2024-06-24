@@ -1,3 +1,9 @@
 packages:
+  # Why are these lines needed? Why is packages/** sufficient even though there
+  # are multiple npm packages defined within it?
   - 'apps/**'
   - 'packages/**'
+
+
+# Note about package.json: The need to enumerate every npm package would be
+# tedious if every single rule my_ts_library emitted an NPM package.
